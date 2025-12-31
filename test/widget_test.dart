@@ -8,11 +8,16 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:city_pulse/main.dart';
+import 'package:city_pulse/services/theme_service.dart';
 
 void main() {
   testWidgets('App starts and displays city name', (WidgetTester tester) async {
+    // Initialize theme service for testing
+    final themeService = ThemeService();
+    await themeService.loadThemeMode();
+
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const CityPulseApp());
+    await tester.pumpWidget(CityPulseApp(themeService: themeService));
 
     // Verify that the city name is displayed
     expect(find.text('Coimbra'), findsOneWidget);
