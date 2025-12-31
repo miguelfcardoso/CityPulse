@@ -1,0 +1,137 @@
+{
+  "points_of_interest": [
+    {
+      "id": "1",
+      "name": "Universidade de Coimbra",
+      "short_description": "Uma das universidades mais antigas da Europa",
+      "description": "A Universidade de Coimbra, fundada em 1290, é uma das mais antigas universidades em funcionamento contínuo no mundo. O seu campus histórico é Património Mundial da UNESCO desde 2013. A Biblioteca Joanina, a Capela de São Miguel e a Torre da Universidade são pontos obrigatórios de visita.",
+      "image": "assets/images/Universidade_de_Coimbra.jpg",
+      "schedule": "Seg-Dom: 09:00-19:00",
+      "average_price": "€12.50",
+      "location": "Paço das Escolas",
+      "category": "monuments"
+    },
+    {
+      "id": "2",
+      "name": "Sé Velha de Coimbra",
+      "short_description": "Catedral românica do século XII",
+      "description": "A Sé Velha de Coimbra é um dos exemplos mais importantes do românico em Portugal. Construída após a Reconquista Cristã, entre 1162 e 1184, mantém-se praticamente intacta desde a sua construção. O seu interior austero e as suas características defensivas são testemunho da arquitetura militar religiosa medieval.",
+      "image": "assets/images/Se_velha_Coimbra.jpg",
+      "schedule": "Seg-Sáb: 10:00-18:00, Dom: 11:00-17:00",
+      "average_price": "€3.00",
+      "location": "Largo da Sé Velha",
+      "category": "monuments"
+    },
+    {
+      "id": "3",
+      "name": "Mosteiro de Santa Cruz",
+      "short_description": "Panteão dos primeiros reis de Portugal",
+      "description": "Fundado em 1131, o Mosteiro de Santa Cruz é um monumento nacional de grande importância histórica e artística. Aqui jazem os primeiros reis de Portugal, D. Afonso Henriques e D. Sancho I. O mosteiro apresenta um notável conjunto de azulejos, talha dourada e o magnífico Coro Alto manuelino.",
+      "image": "assets/images/mosteiro_santa_cruz.jpg",
+      "schedule": "Seg-Sáb: 09:00-18:00, Dom: 16:00-18:00",
+      "average_price": "€4.00",
+      "location": "Praça 8 de Maio",
+      "category": "monuments"
+    },
+    {
+      "id": "4",
+      "name": "Museu Nacional Machado de Castro",
+      "short_description": "Um dos mais importantes museus de Portugal",
+      "description": "Instalado no antigo Paço Episcopal, o museu alberga uma vasta coleção de escultura, pintura, ourivesaria, cerâmica e têxteis que abrangem desde a época romana até ao século XIX. O criptopórtico romano, uma estrutura subterrânea impressionante, é uma das principais atrações.",
+      "image": "assets/images/museu_machado_castro.jpg",
+      "schedule": "Ter-Dom: 10:00-18:00 (fechado às segundas)",
+      "average_price": "€6.00",
+      "location": "Largo Dr. José Rodrigues",
+      "category": "museums"
+    },
+    {
+      "id": "5",
+      "name": "Museu da Ciência",
+      "short_description": "Ciência e história natural da Universidade",
+      "description": "O Museu da Ciência da Universidade de Coimbra apresenta coleções históricas de instrumentos científicos, espécimes de história natural e exposições interativas. Localizado no antigo Colégio de Jesus, o museu combina património histórico com comunicação científica moderna.",
+      "image": "assets/images/museu_ciencia.jpg",
+      "schedule": "Ter-Dom: 10:00-18:00",
+      "average_price": "€5.00",
+      "location": "Largo Marquês de Pombal",
+      "category": "museums"
+    },
+    {
+      "id": "6",
+      "name": "Quinta das Lágrimas",
+      "short_description": "Jardim histórico e lendário",
+      "description": "A Quinta das Lágrimas é um palácio e jardim histórico associado à trágica história de amor de D. Pedro e D. Inês de Castro. Os jardins românticos estendem-se ao longo do Rio Mondego e incluem a Fonte das Lágrimas e a Fonte dos Amores. Atualmente é também um hotel de luxo.",
+      "image": "assets/images/quinta-das-lagrimas.jpg",
+      "schedule": "Todos os dias: 10:00-19:00",
+      "average_price": "€8.00",
+      "location": "Rua António Augusto Gonçalves",
+      "category": "parks"
+    },
+    {
+      "id": "7",
+      "name": "Jardim Botânico",
+      "short_description": "Um dos jardins botânicos mais antigos da Europa",
+      "description": "Criado em 1772 pelo Marquês de Pombal no contexto da Reforma da Universidade, o Jardim Botânico de Coimbra estende-se por 13 hectares. Possui uma notável coleção de plantas tropicais e subtropicais, estufas históricas e um conjunto de fontes e esculturas.",
+      "image": "assets/images/jardim-botanico.jpg",
+      "schedule": "Abr-Set: 09:00-20:00, Out-Mar: 09:00-17:30",
+      "average_price": "€2.00",
+      "location": "Calçada Martim de Freitas",
+      "category": "parks"
+    },
+    {
+      "id": "8",
+      "name": "Tasca Zé Manel dos Ossos",
+      "short_description": "Restaurante tradicional de petiscos",
+      "description": "A Tasca Zé Manel dos Ossos é uma instituição gastronómica de Coimbra, conhecida pelos seus petiscos tradicionais portugueses. O ambiente é rústico e acolhedor, e é necessário reservar com antecedência. Pratos típicos incluem chanfana, leitão e uma excelente seleção de queijos e enchidos regionais.",
+      "image": "assets/images/tasca_ze_manel_dos_ossos.jpg",
+      "schedule": "Ter-Sáb: 12:00-15:00 e 19:00-22:00",
+      "average_price": "€15-25",
+      "location": "Beco do Forno, 12",
+      "category": "gastronomy"
+    },
+    {
+      "id": "9",
+      "name": "Pastelaria Briosa",
+      "short_description": "As autênticas Briosas de Coimbra",
+      "description": "Fundada há mais de um século, a Pastelaria Briosa é famosa pelo doce conventual que lhe dá o nome. As Briosas são pequenos bolos de massa folhada recheados com doce de ovos. É um dos locais mais tradicionais para tomar café e provar doçaria típica de Coimbra.",
+      "image": "assets/images/pastelaria-briosa.jpg",
+      "schedule": "Todos os dias: 08:00-20:00",
+      "average_price": "€5-10",
+      "location": "Largo da Portagem, 5",
+      "category": "gastronomy"
+    },
+    {
+      "id": "10",
+      "name": "Teatro Académico de Gil Vicente",
+      "short_description": "Teatro universitário histórico",
+      "description": "O Teatro Académico de Gil Vicente (TAGV) é o principal espaço cultural da Universidade de Coimbra. Com uma programação diversificada que inclui teatro, música, dança e cinema, é um ponto de encontro cultural da cidade. O edifício, inaugurado em 1961, tem uma arquitetura moderna característica da época.",
+      "image": "assets/images/teatro_academico_gil_vicente.jpg",
+      "schedule": "Conforme programação",
+      "average_price": "€8-15",
+      "location": "Praça da República",
+      "category": "culture"
+    },
+    {
+      "id": "11",
+      "name": "Fado ao Centro",
+      "short_description": "Espetáculo de Fado de Coimbra",
+      "description": "O Fado ao Centro é um espaço dedicado à preservação e divulgação do Fado de Coimbra, uma variante única do fado tradicional português, cantado exclusivamente por homens e associado à tradição académica. O espetáculo diário apresenta a história e a interpretação ao vivo deste património cultural.",
+      "image": "assets/images/Fado-ao-Centro.jpg",
+      "schedule": "Espetáculos: 18:00 (todos os dias)",
+      "average_price": "€10.00",
+      "location": "Rua Quebra Costas, 7",
+      "category": "culture"
+    },
+    {
+      "id": "12",
+      "name": "Portugal dos Pequenitos",
+      "short_description": "Parque temático com monumentos em miniatura",
+      "description": "Inaugurado em 1940, o Portugal dos Pequenitos é um parque pedagógico e turístico que apresenta réplicas em miniatura dos principais monumentos portugueses e das casas tradicionais das várias regiões do país. É um espaço ideal para famílias e oferece também exposições sobre a história e cultura portuguesas.",
+      "image": "assets/images/portugal-dos-pequenitos.jpg",
+      "schedule": "Todos os dias: 10:00-19:00 (verão) / 10:00-17:00 (inverno)",
+      "average_price": "€11.00",
+      "location": "Rossio de Santa Clara",
+      "category": "culture"
+    }
+  ]
+}
+
