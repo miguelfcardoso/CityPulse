@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import '../models/category.dart';
 import '../widgets/category_card.dart';
+import '../services/theme_service.dart';
 import 'points_list_screen.dart';
 import 'favorites_screen.dart';
 
 /// Screen displaying tourist categories with premium design
 class CategoriesScreen extends StatefulWidget {
-  const CategoriesScreen({super.key});
+  final ThemeService? themeService;
+
+  const CategoriesScreen({
+    super.key,
+    this.themeService,
+  });
 
   @override
   State<CategoriesScreen> createState() => _CategoriesScreenState();
@@ -35,6 +41,34 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         elevation: 0,
         shadowColor: Colors.black.withValues(alpha: 0.05),
         surfaceTintColor: Colors.transparent,
+        actions: [
+          if (widget.themeService != null)
+            IconButton(
+              icon: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (child, animation) {
+                  return RotationTransition(
+                    turns: animation,
+                    child: FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    ),
+                  );
+                },
+                child: Icon(
+                  isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
+                  key: ValueKey(isDark),
+                ),
+              ),
+              onPressed: () async {
+                await widget.themeService!.toggleTheme();
+                if (mounted) {
+                  setState(() {});
+                }
+              },
+              tooltip: isDark ? 'Modo Claro' : 'Modo Escuro',
+            ),
+        ],
       ),
       body: _selectedIndex == 0 ? _buildCategoriesView() : const FavoritesScreen(),
       bottomNavigationBar: Container(
@@ -123,6 +157,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     return OrientationBuilder(
       builder: (context, orientation) {
         final crossAxisCount = orientation == Orientation.portrait ? 2 : 3;
+        final isDark = Theme.of(context).brightness == Brightness.dark;
 
         return CustomScrollView(
           slivers: [
@@ -133,12 +168,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Explore Coimbra',
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.w800,
-                        color: Color(0xFF0F172A),
+                        color: isDark ? const Color(0xFFF8FAFC) : const Color(0xFF0F172A),
                         letterSpacing: -0.5,
                       ),
                     ),
@@ -148,7 +183,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
-                        color: Colors.grey[600],
+                        color: isDark ? const Color(0xFF94A3B8) : Colors.grey[600],
                       ),
                     ),
                   ],
@@ -162,7 +197,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: crossAxisCount,
-                  childAspectRatio: 1.0,
+                  childAspectRatio: 0.85, // Reduzido de 1.0 para dar mais altura
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
                 ),

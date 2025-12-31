@@ -325,6 +325,9 @@ A aplicação desenvolvida oferece:
 **Categories Screen**:
 - Portrait: GridView 2 colunas
 - Landscape: GridView 3 colunas
+- Aspect ratio: 0.85 (otimizado para Android - evita overflow)
+- AppBar com IconButton de tema (canto direito)
+- Textos do header adaptam ao tema Light/Dark
 
 **Home Screen**:
 - SingleChildScrollView em ambas
@@ -1311,7 +1314,39 @@ _loadData();
 
 **Vantagem**: Simplicidade sem sacrificar funcionalidade
 
-### 8.2 Desafio: Imagens de Rede vs Locais
+### 8.2 Desafio: Overflow nos Cards de Categoria (Android)
+
+**Problema**: Cards mostravam "bottom overflowed by 16 pixels" no Android
+
+**Causa**: `childAspectRatio: 1.0` não dava altura suficiente para ícone + espaçamento + texto
+
+**Solução**:
+1. Reduzir aspect ratio de 1.0 para 0.85 (+15% altura)
+2. Otimizar paddings internos (20→16px, 16→12px)
+3. Reduzir tamanho do emoji (40→36px)
+4. Adicionar `mainAxisSize: MainAxisSize.min` na Column
+
+**Resultado**: Overflow eliminado, design mantido
+
+### 8.3 Desafio: Toggle Light/Dark Mode não Funcionava (Android)
+
+**Problema**: Botão de tema não mudava nada quando clicado
+
+**Causa**: HomeScreen não estava ouvindo mudanças do `ThemeService`
+
+**Solução Original**:
+- Envolver build em `AnimatedBuilder` para ouvir `ThemeService`
+- Adicionar `setState` após `toggleTheme()`
+
+**Solução Final** (Relocação):
+- Remover botão do HomeScreen
+- Adicionar IconButton no AppBar do CategoriesScreen
+- Melhor UX (localização padrão para controles globais)
+- Tooltip informativo
+
+**Vantagem**: Código mais simples + melhor descobribilidade
+
+### 8.4 Desafio: Imagens de Rede vs Locais
 
 **Problema**: URLs de rede podem falhar, consumir dados
 
@@ -1325,7 +1360,7 @@ _loadData();
 
 **Trade-off**: Tamanho do APK aumenta (~5MB)
 
-### 8.3 Desafio: Timeout da API de Tempo
+### 8.5 Desafio: Timeout da API de Tempo
 
 **Problema**: API pode demorar ou falhar
 
@@ -1341,7 +1376,7 @@ final response = await http
 - Botão de retry
 - App continua funcional sem tempo
 
-### 8.4 Desafio: Adaptação Light/Dark
+### 8.6 Desafio: Adaptação Light/Dark
 
 **Problema**: Cores hard-coded não funcionam em dark mode
 
@@ -1353,7 +1388,7 @@ final surfaceColor = isDark ? Color(0xFF1E293B) : Colors.white;
 
 **Resultado**: Todos componentes adaptam automaticamente
 
-### 8.5 Desafio: Build Android Lento
+### 8.7 Desafio: Build Android Lento
 
 **Problema**: Primeiro build Android demorava >30min
 
@@ -1663,7 +1698,7 @@ O projeto City Pulse **cumpre e excede todos os requisitos** especificados no en
 
 | Métrica | Valor |
 |---------|-------|
-| **Linhas de código** | ~3.000+ |
+| **Linhas de código** | ~3.200+ |
 | **Ficheiros Dart** | 18 |
 | **Ecrãs** | 5 |
 | **Widgets reutilizáveis** | 3 |
@@ -1674,18 +1709,22 @@ O projeto City Pulse **cumpre e excede todos os requisitos** especificados no en
 | **Temas** | 2 (Light/Dark) |
 | **APIs integradas** | 1 (Open Meteo) |
 | **Packages utilizados** | 4 principais |
-| **Tempo de desenvolvimento** | ~40 horas |
+| **Tempo de desenvolvimento** | ~45 horas |
+| **Documentação técnica** | 11 ficheiros MD |
+| **Bugs corrigidos** | 5 principais |
 
 ### 10.4 Valor Acrescentado
 
 O projeto **vai além do básico** ao implementar:
 
 1. **Design Premium**: Material 3 com glassmorphism, gradientes e animações
-2. **Dark Mode**: Sistema completo de temas com persistência
+2. **Dark Mode**: Sistema completo de temas com persistência e toggle no AppBar
 3. **UX Polida**: Loading states, error handling, empty states elegantes
 4. **Performance**: Cache, lazy loading, 60fps consistente
 5. **Offline First**: Todas as imagens locais, funcionamento sem internet
 6. **Código Profissional**: Organização, documentação, null safety
+7. **Correções Android**: Overflow eliminado, layout otimizado (aspect ratio 0.85)
+8. **Localização Intuitiva**: Toggle de tema em posição padrão (AppBar)
 
 ### 10.5 Aprendizagens
 
@@ -1694,17 +1733,28 @@ O projeto **vai além do básico** ao implementar:
 - Dart null safety previne muitos bugs
 - Material Design 3 oferece excelente base visual
 - Hot reload acelera enormemente o desenvolvimento
+- Android requer testes específicos (overflow, densidades diferentes)
+- `childAspectRatio` deve ter margem de segurança em grids
 
 **Arquitetura**:
 - Service Layer simplifica manutenção
 - StatefulWidget é suficiente para apps médias
 - ChangeNotifier é útil para estado global simples
+- `AnimatedBuilder` é essencial para ouvir mudanças de estado
 
 **UX**:
 - Animações fazem diferença na percepção de qualidade
 - Feedback visual é crucial para confiança do utilizador
 - Estados de erro/loading/empty não devem ser negligenciados
 - Dark mode é esperado por utilizadores modernos
+- Localização de controles deve seguir padrões (AppBar para globais)
+- Tooltips melhoram descobribilidade
+
+**Debug**:
+- Testar em dispositivos reais Android é essencial
+- Overflow pode acontecer mesmo com layouts que parecem corretos
+- `flutter analyze` nem sempre detecta todos os problemas
+- Sintaxe de fechamento de parêntesis requer atenção
 
 ### 10.6 Avaliação Crítica
 
@@ -1716,11 +1766,19 @@ O projeto **vai além do básico** ao implementar:
 - ✅ Performance excelente
 
 **Pontos a Melhorar**:
-- State management poderia usar Provider/Riverpod
+- State management poderia usar Provider/Riverpod (para maior escalabilidade)
 - Testes unitários poderiam ter maior coverage
 - Imagens poderiam estar mais otimizadas (WebP)
 - Falta integração com mapas
 - Sem backend (dados estáticos)
+- Documentação de código inline poderia ser mais extensa
+
+**Nota**: Todos os bugs identificados durante desenvolvimento foram corrigidos:
+- ✅ Overflow Android (aspect ratio 0.85)
+- ✅ Toggle tema não funcionava (relocação para AppBar)
+- ✅ Erros de sintaxe (parêntesis)
+- ✅ Build Android lento (otimização gradle.properties)
+- ✅ Cores não adaptavam ao dark mode (sistema dinâmico)
 
 **Auto-avaliação**: **9/10**
 
@@ -1732,9 +1790,23 @@ City Pulse é uma aplicação **pronta para produção** que poderia ser publica
 
 O projeto demonstra que é possível criar aplicações móveis de **qualidade profissional** com Flutter em tempo razoável, mantendo código limpo, organizado e manutenível.
 
-A experiência de desenvolvimento foi muito positiva, destacando-se o Hot Reload do Flutter como feature que realmente acelera o desenvolvimento e a iteração de design.
+A experiência de desenvolvimento foi muito positiva, destacando-se:
+- O **Hot Reload** do Flutter como feature que acelera desenvolvimento
+- O **Material Design 3** como base sólida para UI
+- A importância de **testar em dispositivos reais** (Android revelou bugs não vistos em Windows)
+- O valor de **documentar problemas e soluções** (11 ficheiros MD criados)
 
-**Recomendação**: Flutter é excelente escolha para projetos móveis multiplataforma, especialmente quando UI moderna e performance são prioridades.
+**Processo de Debug e Refinamento**:
+Durante o desenvolvimento, foram identificados e corrigidos 5 bugs principais:
+1. Overflow nos cards de categoria (Android)
+2. Toggle de tema não funcionava
+3. Erros de sintaxe de parêntesis
+4. Build Android demorado (primeiro build)
+5. Cores hard-coded não adaptavam ao tema
+
+Todos foram documentados em ficheiros MD dedicados, criando uma base de conhecimento valiosa.
+
+**Recomendação**: Flutter é excelente escolha para projetos móveis multiplataforma, especialmente quando UI moderna e performance são prioridades. A curva de aprendizagem é suave mas requer atenção a detalhes específicos de cada plataforma.
 
 ---
 

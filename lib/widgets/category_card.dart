@@ -73,30 +73,31 @@ class _CategoryCardState extends State<CategoryCard> {
               onTap: widget.onTap,
               borderRadius: BorderRadius.circular(24),
               child: Container(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(16), // Reduzido de 20 para 16
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min, // Adicionado para evitar overflow
                   children: [
                     // Icon with background
                     Container(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(12), // Reduzido de 16 para 12
                       decoration: BoxDecoration(
                         color: Colors.white.withValues(alpha: 0.2),
                         shape: BoxShape.circle,
                       ),
                       child: Text(
                         widget.category.icon,
-                        style: const TextStyle(fontSize: 40),
+                        style: const TextStyle(fontSize: 36), // Reduzido de 40 para 36
                       ),
                     ),
 
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 12), // Reduzido de 16 para 12
 
                     // Category name
                     Text(
                       widget.category.displayName,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 15, // Reduzido de 16 para 15
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                         letterSpacing: 0.5,

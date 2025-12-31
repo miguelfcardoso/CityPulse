@@ -84,8 +84,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    final isDark = widget.themeService.isDarkMode;
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: OrientationBuilder(
@@ -108,9 +106,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            Colors.black.withValues(alpha: isDark ? 0.7 : 0.6),
-                            Colors.black.withValues(alpha: isDark ? 0.5 : 0.4),
-                            Colors.black.withValues(alpha: isDark ? 0.8 : 0.7),
+                            Colors.black.withValues(alpha: 0.6),
+                            Colors.black.withValues(alpha: 0.4),
+                            Colors.black.withValues(alpha: 0.7),
                           ],
                           stops: const [0.0, 0.5, 1.0],
                         ),
@@ -120,22 +118,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 ),
               ),
 
-              // Theme Toggle Button
-              Positioned(
-                top: MediaQuery.of(context).padding.top + 8,
-                right: 16,
-                child: _buildThemeToggle(isDark),
-              ),
-
-              // Content
-              SafeArea(
-                child: FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: SlideTransition(
-                    position: _slideAnimation,
-                    child: Center(
-                      child: SingleChildScrollView(
-                        padding: const EdgeInsets.all(24),
+                  // Content
+                  SafeArea(
+                    child: FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: SlideTransition(
+                        position: _slideAnimation,
+                        child: Center(
+                          child: SingleChildScrollView(
+                            padding: const EdgeInsets.all(24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -256,7 +247,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                   context,
                                   PageRouteBuilder(
                                     pageBuilder: (context, animation, secondaryAnimation) =>
-                                        const CategoriesScreen(),
+                                        CategoriesScreen(themeService: widget.themeService),
                                     transitionsBuilder: (context, animation, secondaryAnimation, child) {
                                       return FadeTransition(
                                         opacity: animation,
@@ -383,61 +374,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   ),
                 ),
               ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildThemeToggle(bool isDark) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white.withValues(alpha: 0.25),
-            Colors.white.withValues(alpha: 0.15),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.3),
-          width: 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: () async {
-            await widget.themeService.toggleTheme();
-          },
-          borderRadius: BorderRadius.circular(16),
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 300),
-              transitionBuilder: (child, animation) {
-                return RotationTransition(
-                  turns: animation,
-                  child: FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  ),
-                );
-              },
-              child: Icon(
-                isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
-                key: ValueKey(isDark),
-                color: Colors.white,
-                size: 24,
-              ),
             ),
           ),
         ),

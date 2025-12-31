@@ -32,7 +32,6 @@ City Pulse é uma aplicação Flutter desenvolvida como projeto académico que s
   - Velocidade do vento
 - ✅ Botão elegante para aceder às categorias
 - ✅ Botão de refresh para atualizar dados meteorológicos
-- ✅ **Toggle Light/Dark Mode** (glassmorphism design)
 
 #### 2. **Categorias Turísticas**
 - ✅ 5 Categorias implementadas:
@@ -44,6 +43,7 @@ City Pulse é uma aplicação Flutter desenvolvida como projeto académico que s
 - ✅ Cores únicas por categoria com gradientes
 - ✅ Navegação para lista de pontos filtrados
 - ✅ Bottom Navigation Bar elegante
+- ✅ **Toggle Light/Dark Mode no AppBar** (IconButton com animação)
 
 #### 3. **Pontos de Interesse**
 - ✅ **12 pontos de interesse** carregados de JSON local (`assets/data/points_of_interest.json`)
@@ -84,13 +84,14 @@ City Pulse é uma aplicação Flutter desenvolvida como projeto académico que s
 ### 🌟 Funcionalidades Extra (Valor Acrescentado)
 
 #### **Design Premium**
-- ✨ **Light/Dark Mode** completo com toggle elegante
+- ✨ **Light/Dark Mode** completo com toggle no AppBar (Categories Screen)
 - ✨ **Glassmorphism** (efeito vidro fosco) nos widgets
 - ✨ **Gradientes sofisticados** em botões e cards
 - ✨ **Animações suaves** (fade, slide, scale, rotation)
 - ✨ **Tipografia hierárquica** refinada (56px → 12px)
 - ✨ **Sombras coloridas** matching por categoria
 - ✨ **Material Design 3** com cores premium
+- ✨ **Grid responsivo** otimizado (aspect ratio 0.85) - sem overflow em Android
 
 #### **UX Melhorada**
 - ⚡ **Loading states** elegantes em todos os ecrãs
@@ -425,6 +426,9 @@ O projeto inclui documentação técnica completa:
 - **`PREMIUM_DESIGN_UPGRADE.md`** - Detalhes do design premium
 - **`DESIGN_SYSTEM_GUIDE.md`** - Sistema de design (cores, tipografia)
 - **`DARK_MODE_IMPLEMENTATION.md`** - Implementação Light/Dark Mode
+- **`DARK_MODE_TOGGLE_FIX.md`** - Correção do toggle de tema (Android)
+- **`THEME_BUTTON_RELOCATION.md`** - Movimentação do botão de tema
+- **`ANDROID_OVERFLOW_FIX.md`** - Correção overflow cards Android
 - **`ANDROID_BUILD_GUIDE.md`** - Guia de build Android
 - **`IMPLEMENTATION_SUMMARY.md`** - Resumo de implementação
 - **`QUICKSTART.md`** - Guia rápido de utilização
